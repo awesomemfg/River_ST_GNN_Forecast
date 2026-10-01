@@ -1,8 +1,8 @@
-# Record B: code and trained weights for "Operational ST-GNN stage forecasting, Ascension Parish" (HESS submission)
+# A python-based package for ST-GNN based river stage forecast
 
 Licence: Apache-2.0 (`LICENSE`, `NOTICE`), including the trained weights. DOI: 10.5281/zenodo.23063618. Data: Record A, DOI 10.5281/zenodo.23046776.
 
-This record contains the workflow behind the paper:
+This record contains the workflow of:
 - data preparation;
 - graph construction;
 - the nine-channel ST-GNN, the GRU (the ST-GNN on the identity graph) and the LSTM;
