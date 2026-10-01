@@ -1,0 +1,122 @@
+{
+  "system": "System B",
+  "experiment": "SYSTEM_B_BOUNDARY_INPARISH_20260914",
+  "research_only": true,
+  "stage": "final",
+  "model_kind": "stgnn",
+  "graph_key": "ipsub10_d3",
+  "graph_mode": "ipsub10_d3",
+  "seed": 202,
+  "nodes": [
+    "BCSA4409",
+    "BCSU4350",
+    "BCSU4420",
+    "BMSA1292",
+    "BMSA2201",
+    "BMSU2620",
+    "HBSU1384",
+    "HBSU3213",
+    "MBSA5584",
+    "MBSA6512"
+  ],
+  "mu": [
+    -2.529975652694702,
+    1.4294041395187378,
+    -0.16820627450942993,
+    1.6945223808288574,
+    1.972623586654663,
+    8.304730415344238,
+    0.859251081943512,
+    1.500827670097351,
+    2.6842944622039795,
+    0.6637181639671326
+  ],
+  "sd": [
+    0.24768517911434174,
+    0.833753764629364,
+    1.6282565593719482,
+    1.6196057796478271,
+    1.4277474880218506,
+    0.7747028470039368,
+    0.798997163772583,
+    0.8777990937232971,
+    0.6010145545005798,
+    0.6190720796585083
+  ],
+  "r6": [
+    0.0033886879682540894,
+    0.042476055903196336
+  ],
+  "r24": [
+    0.013554752804338932,
+    0.10785418911075592
+  ],
+  "api24": [
+    0.07848835736513138,
+    0.24392157955265045
+  ],
+  "api48": [
+    0.15661613643169403,
+    0.37721555097198484
+  ],
+  "api72": [
+    0.23459823429584503,
+    0.4924197660217285
+  ],
+  "re": [
+    0.004469543229788542,
+    0.08389766676521301
+  ],
+  "raccel": [
+    -1.9296334820805006e-13,
+    0.015037231838166713
+  ],
+  "tend": [
+    -0.0006918138242326677,
+    0.5159119234809876
+  ],
+  "halflives": {
+    "api24": 96.0,
+    "api48": 192.0,
+    "api72": 288.0
+  },
+  "tend_lag": 24,
+  "feat_version": "DQ",
+  "quantiles": [
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "IN_CH": 9,
+  "F_CH": 9,
+  "IN_W": 288,
+  "LB_W": 96,
+  "H": 64,
+  "rain6_steps": 6,
+  "rain6_hours": 1.5,
+  "rain24_steps": 24,
+  "rain24_hours": 6.0,
+  "decoder_steps": 96,
+  "decoder_hours": 24.0,
+  "flatline_detection": "causal trailing 96-step standard deviation",
+  "training_pickle": "project/hpc/Training/GNN/Experiments/REFORECAST_GRAPH_RANKING_2026H1/graphs/training_matrix_through_20251231.pkl",
+  "training_pickle_sha256": "a5cd62a788596fee0bba84447c30304a300f2b3ddeb900568d7cdd726d5fa3b9",
+  "graph": "project/hpc/Experiments/SYSTEM_B_BOUNDARY_INPARISH_20260914/frozen_assets/graph_ipsub10_d3_final.npz",
+  "graph_sha256": "fca92c02870edfaf32d7b5f1e63d0945d2e73247ef06363d3f92dcdd2a8fa220",
+  "graph_nonzero_count": 11,
+  "no_fitting_support_nodes": [],
+  "fitting_support_node_count": 10,
+  "stage_to_rain": "project/hpc/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/stage_to_rain_gauge.csv",
+  "stage_to_rain_sha256": "e79296fa5429a92c32fa00e6ab10e4eacaa159e803ce99a2f1044ac41f40d766",
+  "statistics_end_utc": "2025-12-31 23:45:00+00:00",
+  "origin_count": 26208,
+  "epochs_requested": 12,
+  "best_epoch": 12,
+  "best_validation_loss": null,
+  "created_utc": "2026-09-14T23:08:53.939417+00:00",
+  "training_origin_start_utc": "2023-01-04 00:00:00+00:00",
+  "training_origin_end_utc": "2025-12-30 23:00:00+00:00",
+  "validation_assignment": "none during final fit; fixed epoch count imported from development"
+}

@@ -38,4 +38,4 @@ The protocol adopts chronological training, validation and testing, validation-b
 
 ## Release limits
 
-Record A supplies paired evaluation data and full-precision residual inputs for the bootstrap. It does not supply the complete raw training matrix. Retraining requires the original telemetry, routing assets and meteorological inputs.
+The companion evaluation data supply paired forecasts and observations and full-precision residual inputs for statistical resampling. It does not supply the complete raw training matrix. Retraining requires the original telemetry, routing assets and meteorological inputs.

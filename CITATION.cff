@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Please cite this software and the associated research paper when available."
+type: software
+title: "River ST-GNN Forecast"
+authors:
+  - family-names: "Geonova"
+    given-names: "Muhamad Farid"
+    affiliation: "Louisiana State University"
+repository-code: "https://github.com/awesomemfg/River_ST_GNN_Forecast"
+url: "https://github.com/awesomemfg/River_ST_GNN_Forecast"
+license: Apache-2.0
+keywords:
+  - river-stage forecasting
+  - graph neural networks
+  - hydrology
+  - Ascension Parish

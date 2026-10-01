@@ -1,0 +1,116 @@
+{
+  "experiment": "SYSTEM_B_471_CHRONOLOGICAL_20260913",
+  "suite": "matched_graph_and_nodewise_lstm_comparisons",
+  "created_utc": "2026-09-14T03:54:02.232235+00:00",
+  "node_count": 68,
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "development_training_origins_utc": [
+    "2023-01-04 00:00:00",
+    "2024-12-30 23:00:00"
+  ],
+  "development_validation_origins_utc": [
+    "2025-01-04 00:00:00",
+    "2025-12-30 23:00:00"
+  ],
+  "final_fitting_origins_utc": [
+    "2023-01-04 00:00:00",
+    "2025-12-30 23:00:00"
+  ],
+  "test_origins_utc": [
+    "2026-01-01 00:00:00",
+    "2026-06-30 23:00:00"
+  ],
+  "test_origin_count": 4344,
+  "score_gauge_count": 51,
+  "rain6_steps": 6,
+  "rain6_hours": 1.5,
+  "rain24_steps": 24,
+  "rain24_hours": 6.0,
+  "decoder_steps": 96,
+  "decoder_hours": 24.0,
+  "postprocessing": "off",
+  "arms": [
+    {
+      "graph_key": "obs_pre2026",
+      "model_kind": "stgnn",
+      "label": "Observation-derived lead-lag graph",
+      "development_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_obs_pre2026_development.npz",
+      "development_graph_sha256": "4407b44263709bef95af31fdd56934eeabce27e40f0185614d82cdc9b0302016",
+      "development_edges": 332,
+      "final_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_obs_pre2026_final.npz",
+      "final_graph_sha256": "91e6d49f59a25050e1b3f77251db1b967ce5507c3a89652a40832d8a67c258ba",
+      "final_edges": 471
+    },
+    {
+      "graph_key": "obs_pre2026_basin",
+      "model_kind": "stgnn",
+      "label": "Basin-restricted observation-derived graph",
+      "development_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_obs_pre2026_basin_development.npz",
+      "development_graph_sha256": "49c0b1f11431c69da1dd19e16d1f9a94fd704af42635a8098078c6c63539041a",
+      "development_edges": 196,
+      "final_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_obs_pre2026_basin_final.npz",
+      "final_graph_sha256": "03a1e9ce3a5c06c55d83a654fd7b7ae6c0037ec43e6e6d27ff6eb19f495b2035",
+      "final_edges": 279
+    },
+    {
+      "graph_key": "hecras",
+      "model_kind": "stgnn",
+      "label": "HEC-RAS hydraulic connectivity",
+      "development_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_hecras_development.npz",
+      "development_graph_sha256": "e7dd06e481dce670777b39c40872d238dd8d608dd3834c217eabd6fe787da675",
+      "development_edges": 963,
+      "final_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_hecras_final.npz",
+      "final_graph_sha256": "e7dd06e481dce670777b39c40872d238dd8d608dd3834c217eabd6fe787da675",
+      "final_edges": 963
+    },
+    {
+      "graph_key": "dem",
+      "model_kind": "stgnn",
+      "label": "DEM downslope connectivity",
+      "development_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_dem_development.npz",
+      "development_graph_sha256": "606d2eb288d6c5f7742dc73ac14aff1ec152444f7ed3001d8cf0389f98a21c63",
+      "development_edges": 366,
+      "final_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_dem_final.npz",
+      "final_graph_sha256": "606d2eb288d6c5f7742dc73ac14aff1ec152444f7ed3001d8cf0389f98a21c63",
+      "final_edges": 366
+    },
+    {
+      "graph_key": "dem_basin",
+      "model_kind": "stgnn",
+      "label": "Basin-restricted DEM connectivity",
+      "development_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_dem_basin_development.npz",
+      "development_graph_sha256": "ea5fa438366401236f7f94bcea9fe32f718816ba6b291eb984ff47d5e670d4ce",
+      "development_edges": 223,
+      "final_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_dem_basin_final.npz",
+      "final_graph_sha256": "ea5fa438366401236f7f94bcea9fe32f718816ba6b291eb984ff47d5e670d4ce",
+      "final_edges": 223
+    },
+    {
+      "graph_key": "identity",
+      "model_kind": "stgnn",
+      "label": "Identity adjacency with no cross-gauge messages",
+      "development_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_identity_development.npz",
+      "development_graph_sha256": "71aa9498f5c805fd6ead3b94a18604de1ca7b7b6afb2e4991a06281b3bf8f258",
+      "development_edges": 68,
+      "final_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_identity_final.npz",
+      "final_graph_sha256": "71aa9498f5c805fd6ead3b94a18604de1ca7b7b6afb2e4991a06281b3bf8f258",
+      "final_edges": 68
+    },
+    {
+      "graph_key": "nodewise",
+      "model_kind": "lstm",
+      "label": "Shared nodewise unidirectional LSTM",
+      "development_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_identity_development.npz",
+      "development_graph_sha256": "71aa9498f5c805fd6ead3b94a18604de1ca7b7b6afb2e4991a06281b3bf8f258",
+      "development_edges": 68,
+      "final_graph": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/comparisons/graph_identity_final.npz",
+      "final_graph_sha256": "71aa9498f5c805fd6ead3b94a18604de1ca7b7b6afb2e4991a06281b3bf8f258",
+      "final_edges": 68
+    }
+  ],
+  "optional_bilstm": "deferred until mandatory matched arms complete"
+}

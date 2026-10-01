@@ -1,0 +1,62 @@
+{
+  "experiment": "SYSTEM_B_471_CHRONOLOGICAL_20260913",
+  "created_utc": "2026-09-13T20:11:22.928545+00:00",
+  "node_count": 68,
+  "development_graph_edge_count": 332,
+  "final_graph_edge_count": 471,
+  "development_graph_cutoff_utc": "2024-12-31 23:45:00+00:00",
+  "final_graph_cutoff_utc": "2025-12-31 23:45:00+00:00",
+  "assets": [
+    {
+      "source_path": "project/Experiments/EVENT_SPLIT_INVENTORY_HESS_20260910/GRAPH_ASSETS_TRAIN_THROUGH_2024/graph_obs_train_through_2024_68nodes.npz",
+      "frozen_path": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/graph_obs_development_2023_2024.npz",
+      "source_sha256": "4407b44263709bef95af31fdd56934eeabce27e40f0185614d82cdc9b0302016",
+      "frozen_sha256": "4407b44263709bef95af31fdd56934eeabce27e40f0185614d82cdc9b0302016",
+      "size_bytes": 59828
+    },
+    {
+      "source_path": "project/hpc/Training/GNN/Experiments/REFORECAST_GRAPH_RANKING_2026H1/graphs/graph_obs_pre2026.npz",
+      "frozen_path": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/graph_obs_pre2026_471edges.npz",
+      "source_sha256": "91e6d49f59a25050e1b3f77251db1b967ce5507c3a89652a40832d8a67c258ba",
+      "frozen_sha256": "91e6d49f59a25050e1b3f77251db1b967ce5507c3a89652a40832d8a67c258ba",
+      "size_bytes": 58644
+    },
+    {
+      "source_path": "src/data/stage_to_rain_gauge.csv",
+      "frozen_path": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/stage_to_rain_gauge.csv",
+      "source_sha256": "e79296fa5429a92c32fa00e6ab10e4eacaa159e803ce99a2f1044ac41f40d766",
+      "frozen_sha256": "e79296fa5429a92c32fa00e6ab10e4eacaa159e803ce99a2f1044ac41f40d766",
+      "size_bytes": 1243
+    },
+    {
+      "source_path": "project/Experiments/HRRR_FORCING_AND_LSTM_20260911/data/forcing/hrrr_issue_time_stitch_L2.npz",
+      "frozen_path": "project/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/hrrr_issue_time_stitch_L2.npz",
+      "source_sha256": "4ed04ae577513de850966f144ded8c3d138b974bd1bcc54d63dc503586d5afa4",
+      "frozen_sha256": "4ed04ae577513de850966f144ded8c3d138b974bd1bcc54d63dc503586d5afa4",
+      "size_bytes": 8479546
+    },
+    {
+      "source_path": "project/Experiments/INPARISH51_20260813/outputs/in_parish_gauges.json",
+      "frozen_path": "src/data/in_parish_gauges.json",
+      "source_sha256": "e84e654a15e670c58cdacff1d42f282a57feac976882cceaf0abfdd220bc8b2f",
+      "frozen_sha256": "e84e654a15e670c58cdacff1d42f282a57feac976882cceaf0abfdd220bc8b2f",
+      "size_bytes": 1666
+    },
+    {
+      "source_path": "project/hpc/Training/GNN/Experiments/REFORECAST_GRAPH_RANKING_2026H1/graphs/training_matrix_through_20251231.pkl",
+      "frozen_path": null,
+      "source_sha256": "a5cd62a788596fee0bba84447c30304a300f2b3ddeb900568d7cdd726d5fa3b9",
+      "frozen_sha256": null,
+      "size_bytes": 246215684,
+      "note": "Large immutable research asset referenced by hash; not duplicated."
+    },
+    {
+      "source_path": "project/hpc/Experiments/HRRR_FORCING_AND_LSTM_20260911/frozen_inputs/global_features_all_stations_feature_engineered_20260911.pkl",
+      "frozen_path": null,
+      "source_sha256": "f09101a57f3b6d758c187cf7671f239952e82ef26a04df621ec0b83af93e28ce",
+      "frozen_sha256": null,
+      "size_bytes": 305702473,
+      "note": "Large immutable research asset referenced by hash; not duplicated."
+    }
+  ]
+}

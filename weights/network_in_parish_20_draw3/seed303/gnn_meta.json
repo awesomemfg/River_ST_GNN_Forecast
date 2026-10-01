@@ -1,0 +1,152 @@
+{
+  "system": "System B",
+  "experiment": "SYSTEM_B_BOUNDARY_INPARISH_20260914",
+  "research_only": true,
+  "stage": "final",
+  "model_kind": "stgnn",
+  "graph_key": "ipsub20_d3",
+  "graph_mode": "ipsub20_d3",
+  "seed": 303,
+  "nodes": [
+    "BCSA4409",
+    "BCSA4419",
+    "BCSU4350",
+    "BCSU4420",
+    "BMSA1292",
+    "BMSA2200",
+    "BMSA2201",
+    "BMSU2620",
+    "HBSA1384",
+    "HBSU1384",
+    "HBSU1385",
+    "HBSU3213",
+    "MBSA4569",
+    "MBSA5584",
+    "MBSA6512",
+    "MBSA7806",
+    "MBSA9909",
+    "MBSU5688",
+    "MBSU6557",
+    "MBSU8999"
+  ],
+  "mu": [
+    -2.529975652694702,
+    1.1373310089111328,
+    1.4294041395187378,
+    -0.16820627450942993,
+    1.6945223808288574,
+    1.923684000968933,
+    1.972623586654663,
+    8.304730415344238,
+    -2.252307653427124,
+    0.859251081943512,
+    0.859251081943512,
+    1.500827670097351,
+    0.6081455945968628,
+    2.6842944622039795,
+    0.6637181639671326,
+    0.6369300484657288,
+    0.9198071956634521,
+    1.1946871280670166,
+    1.0546214580535889,
+    1.3130537271499634
+  ],
+  "sd": [
+    0.24768517911434174,
+    0.5944797396659851,
+    0.833753764629364,
+    1.6282565593719482,
+    1.6196057796478271,
+    1.6540745496749878,
+    1.4277474880218506,
+    0.7747028470039368,
+    3.1975417137145996,
+    0.798997163772583,
+    0.798997163772583,
+    0.8777990937232971,
+    0.6108447909355164,
+    0.6010145545005798,
+    0.6190720796585083,
+    0.529471218585968,
+    0.8532214164733887,
+    0.569214403629303,
+    0.5554763078689575,
+    0.6252171993255615
+  ],
+  "r6": [
+    0.0028334821108728647,
+    0.03853875188326836
+  ],
+  "r24": [
+    0.011332431808114052,
+    0.09763009263372421
+  ],
+  "api24": [
+    0.06563885509967804,
+    0.22316414280033112
+  ],
+  "api48": [
+    0.13096754252910614,
+    0.3468583987483978
+  ],
+  "api72": [
+    0.19614800810813904,
+    0.45434121949768064
+  ],
+  "re": [
+    0.003681468078866601,
+    0.0753287987241745
+  ],
+  "raccel": [
+    4.756531613026027e-09,
+    0.013764820752501487
+  ],
+  "tend": [
+    -0.0006202492513693869,
+    0.4688224063644409
+  ],
+  "halflives": {
+    "api24": 96.0,
+    "api48": 192.0,
+    "api72": 288.0
+  },
+  "tend_lag": 24,
+  "feat_version": "DQ",
+  "quantiles": [
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "IN_CH": 9,
+  "F_CH": 9,
+  "IN_W": 288,
+  "LB_W": 96,
+  "H": 64,
+  "rain6_steps": 6,
+  "rain6_hours": 1.5,
+  "rain24_steps": 24,
+  "rain24_hours": 6.0,
+  "decoder_steps": 96,
+  "decoder_hours": 24.0,
+  "flatline_detection": "causal trailing 96-step standard deviation",
+  "training_pickle": "project/hpc/Training/GNN/Experiments/REFORECAST_GRAPH_RANKING_2026H1/graphs/training_matrix_through_20251231.pkl",
+  "training_pickle_sha256": "a5cd62a788596fee0bba84447c30304a300f2b3ddeb900568d7cdd726d5fa3b9",
+  "graph": "project/hpc/Experiments/SYSTEM_B_BOUNDARY_INPARISH_20260914/frozen_assets/graph_ipsub20_d3_final.npz",
+  "graph_sha256": "f8e79031bd0e4ca7c767b7feaa6b21ae374e8367362ca065a5a3aa1a88246f29",
+  "graph_nonzero_count": 38,
+  "no_fitting_support_nodes": [],
+  "fitting_support_node_count": 20,
+  "stage_to_rain": "project/hpc/Experiments/SYSTEM_B_471_CHRONOLOGICAL_20260913/frozen_assets/stage_to_rain_gauge.csv",
+  "stage_to_rain_sha256": "e79296fa5429a92c32fa00e6ab10e4eacaa159e803ce99a2f1044ac41f40d766",
+  "statistics_end_utc": "2025-12-31 23:45:00+00:00",
+  "origin_count": 26208,
+  "epochs_requested": 6,
+  "best_epoch": 6,
+  "best_validation_loss": null,
+  "created_utc": "2026-09-14T22:46:32.175985+00:00",
+  "training_origin_start_utc": "2023-01-04 00:00:00+00:00",
+  "training_origin_end_utc": "2025-12-30 23:00:00+00:00",
+  "validation_assignment": "none during final fit; fixed epoch count imported from development"
+}

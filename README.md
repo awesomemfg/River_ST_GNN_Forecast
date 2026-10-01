@@ -1,84 +1,62 @@
-# A python-based package for ST-GNN based river stage forecast
+# River ST-GNN Forecast
 
-Licence: Apache-2.0 (`LICENSE`, `NOTICE`), including the trained weights. DOI: 10.5281/zenodo.23063618. Data: Record A, DOI 10.5281/zenodo.23046776.
+Research code and trained weights for river-stage forecasting in Ascension Parish, Louisiana. The study compares a spatiotemporal graph neural network (ST-GNN), a GRU with identity adjacency, and a nodewise LSTM. The models use 72 hours of historical inputs to predict the next 24 hours at 15-minute intervals. The full network contains 68 gauges, including 51 within the parish and 17 outside its boundary.
 
-This record contains the workflow of:
-- data preparation;
-- graph construction;
-- the nine-channel ST-GNN, the GRU (the ST-GNN on the identity graph) and the LSTM;
-- chronological training;
-- inference with the Sect. 2.5.2 postprocessing;
-- evaluation;
-- the scripts that produce each table and figure.
+## Quick start: reproduce the paired uncertainty analysis
 
+The standalone resampling analysis needs Python 3.10 or later and NumPy. It does not require TensorFlow, a GPU, operational credentials, or raw training telemetry.
 
-## Layout
+```bash
+git clone https://github.com/awesomemfg/River_ST_GNN_Forecast.git
+cd River_ST_GNN_Forecast
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r environment/requirements_resampling.txt
+python src/evaluation/reproduce_paper_resampling.py --help
+python src/evaluation/reproduce_paper_resampling.py \
+  --data /absolute/path/to/evaluation-data \
+  --output results/paired_resampling.csv
+```
 
-| Path | Contents |
-|---|---|
-| `src/data/` | Download and cleaning of the gauge, rainfall, wind and structure records (APG SCADA, USGS, NOAA CO-OPS, ASOS), datum correction and the feature matrix (`download_and_prepare_matrix.py`); gauge cohort; in-parish gauge list; station-to-rain-gauge table |
-| `src/graphs/` | The six graphs of Table 3 and the Sect. 4.2 networks. Scripts: `observation_graph_2023_2024.py` (epoch-selection graph), `observation_graphs_pre2026.py` (the 471-edge graph, correlation of at least 0.40 and lag of at least 30 min, and its within-basin variant), `hecras_graph.py`, `dem_graph.py`, `dem_within_basin_graph.py`, `identity_graph.py`, `network_subset_graphs.py`. `freeze_*.py` records every graph with its SHA-256. |
-| `src/stgnn/` | `stgnn_models.py` (ST-GNN), `train.py` (epoch selection on 2025, then a fresh fit on all pre-2026 origins), `train_network_subsets.py`, `hindcast.py`, `simulated_operational_forecast.py` (continuity blend, stale-data repair, rainfall-dependent rise cap), validation checks, and `slurm/` job scripts |
-| `src/lstm/` | `lstm_models.py`, `train.py`, `inference.py`, `slurm/` |
-| `src/forcing/` | HRRR issue-time rainfall (`hrrr_fetch_points.py`, `hrrr_issue_time_forcing.py`); weather-model and GEFS rainfall (`weather_model_fetch.py`, `gefs_fetch.py`, `gefs_probability_matched_mean.py`, `weather_model_forcing_jan_aug.py`, `weather_model_issue_layout.py`) |
-| `src/evaluation/` | `score_fixed_leads.py` (RMSE, correlation, NSE, KGE at fixed leads, all and event-only origins), `score_forecast_windows.py` (24 h windows, crests), the analyses behind Sects. 3 and 4, and `run/` (the drivers; `run/run_all.sh` runs the full evaluation in order) |
-| `src/figures/` | One script per paper figure (`fig01_study_area.py` to `fig15_gauge_networks.py`, `figA1_...`, `figB1_B2_C1_appendix.py`, `figC2_C3_event_hydrographs.py`), the shared plotting recipes they call (`recipe_*.py`) and helpers (`_mapbase.py`, `_units.py`, `_card.py`, `_spatialmap.py`); `run_all_figures.sh` |
-| `src/tables/` | `table4_hindcast.py`, `tables_A1_B1_B2.py`, and the scripts for the numbers quoted in the text |
-| `config/` | `rain_rise_caps.json` (rise-cap parameters of the postprocessing), `station_coordinates.csv` |
-| `docs/` | Training protocol, its locked settings, and the protocol for the alternative graphs |
-| `weights/` | Final weights (`gnn.weights.h5`), metadata (`gnn_meta.json`: node order, normalization statistics, graph hash, training period) and training history for 20 models × 3 seeds; `WEIGHTS_INDEX.csv` gives each file's SHA-256 |
-| `environment/` | The evaluation environment (`environment_evaluation.yml`, `requirements_evaluation.txt`) |
-| `archive/` | Superseded versions (the evaluators before the anchor fix), one-off generators that wrote copies now in `src/`, run helpers, and earlier trainers the models derive from. Kept for provenance; not needed to reproduce the results. |
-| `PROVENANCE.csv` | Every file with its component and the SHA-256 of the file as it was run |
-| `SCRUB_REPORT.csv` | Every place where a server or HPC account name was replaced by a placeholder |
-| `FILE_MANIFEST.csv` | Size and SHA-256 of every file in this record |
+Set `--data` to the extracted evaluation-data directory containing `bootstrap_inputs/`. The script repeats the paired comparison 10,000 times, sampling gauges and 72-hour blocks of forecast origins with replacement. Each repeat uses the same sampled observations for both configurations. The middle 95% of the resulting RMSE differences gives the reported interval. See [reproducing results](docs/reproducing_results.md) for the inputs and output fields.
 
-## Figure and table map (manuscript numbering)
+Archive identifiers: [evaluation data and derived graphs](https://doi.org/10.5281/zenodo.23046776) and [software and trained weights](https://doi.org/10.5281/zenodo.23063618). The software and weights use Apache-2.0; the evaluation data use CC BY 4.0. Archive availability is managed separately from this repository.
 
-| Item | Script |
-|---|---|
-| Fig. 1 | `src/figures/fig01_study_area.py` (map layers: `fig01_fetch_map_layers.py`) |
-| Fig. 2, 3, 4, 5 | `src/figures/fig02_operational_lifecycle.py`, `fig03_candidate_graphs.py`, `fig04_workflow.py`, `fig05_lstm_step.py` |
-| Fig. 6 | Screenshot of the public forecast interface; no script |
-| Fig. 7 | `src/figures/fig07_selected_graph.py` |
-| Fig. 8, 9, 10 | `src/figures/fig08_hindcast_skill.py`, `fig09_hindcast_examples.py`, `fig10_simulated_forecast_skill.py` |
-| Fig. 11 | `src/figures/fig11_event_only_model_comparison.py`, then `fig11_event_only_labels.py` |
-| Fig. 12 | `src/figures/fig12_simulated_forecast_examples.py` |
-| Fig. 13, 14, 16 | `src/figures/fig13_fig14_fig16_rainfall_crest_gauge_count.py` |
-| Fig. 15 | `src/figures/fig15_gauge_networks.py` |
-| Fig. A1 | `src/figures/figA1_terrain_and_mesh.py` |
-| Fig. B1, B2, C1 | `src/figures/figB1_B2_C1_appendix.py` |
-| Fig. C2, C3 | `src/figures/figC2_C3_event_hydrographs.py` |
-| Table 3 | `src/evaluation/score_fixed_leads.py` on the six graph runs (`run/run_alternative_graphs.sh`) |
-| Table 4 | `src/tables/table4_hindcast.py` |
-| Table 5, Sect. 3.2.2 | `src/evaluation/score_fixed_leads.py`, event-only simulated operational forecasts |
-| Table 6, Sect. 3.3 | `src/tables/section41_rainfall_numbers.py`, from `src/evaluation/rainfall_forcing_skill.py` |
-| Tables A1, B1, B2 | `src/tables/tables_A1_B1_B2.py` |
+## Repository contents
 
-The published Figs. 1 to 5, 7 and A1 were checked against these scripts' outputs (byte-identical or pixel-identical).
+| Directory or file | Contents |
+| --- | --- |
+| `src/data/` | Gauge, rainfall, wind and structure-record preparation, datum correction, and feature-matrix construction |
+| `src/graphs/` | Observation, hydraulic, terrain, within-basin and identity graphs, network subsets, and graph checksums |
+| `src/stgnn/` | ST-GNN and GRU models, chronological training, hindcasts, simulated operational forecasts, and HPC job scripts |
+| `src/lstm/` | Nodewise LSTM model, training and inference |
+| `src/forcing/` | Archived issue-time HRRR and other rainfall-forcing preparation |
+| `src/evaluation/` | Fixed-lead and forecast-window scoring, paired resampling, and evaluation drivers |
+| `src/figures/`, `src/tables/` | Original figure recipes and table calculations; see the [figure and table guide](docs/figures_and_tables.md) |
+| `config/` | Rainfall-dependent rise caps and station coordinates |
+| `weights/` | Checkpoints, node order, normalization statistics, training histories, model lineage and weight checksums for 20 models and three seeds |
+| `environment/` | Minimal resampling requirements and snapshots of the original evaluation environment |
+| `docs/` | Installation, reproduction instructions and scientific protocols |
+| `archive/` | Earlier scripts retained to document model development and corrections |
+| `PROVENANCE.csv` | Source files and their checksums as originally run |
+| `SCRUB_REPORT.csv` | Locations where server and account identifiers were replaced |
+| `FILE_MANIFEST.csv` | Current file sizes and SHA-256 checksums, excluding the manifest itself and the compressed code bundle |
+| `Code_Ascension_Parish_ST_GNN_Model.tar.gz` | Compressed copy of the current repository files, excluding the bundle itself |
 
-## Paths
+## Scientific protocol
 
-- **Run everything from the repository root.** References between files of this repository are written as repository paths: `src/...` in Python and `${REPO_ROOT}/src/...` in shell scripts. Each shell script sets `REPO_ROOT` from its own location.
-- **Data paths use a neutral project root.** The scripts read and write data under `project/` (for example `project/Experiments/<experiment>/runs`), and `project/hpc/` is the storage of the HPC cluster where training ran. These folders are not part of the deposit. Record A holds the data needed to check every published number.
-- **Provenance and corrections.** The corrected LSTM uses the shared chronological trainer; its earlier random-validation trainer is retained only in `archive/`. `weights/MODEL_LINEAGE.csv` binds the evaluated LSTM to its three checkpoints. `src/evaluation/reproduce_paper_bootstrap.py` reproduces the paired h+24 RMSE analysis from Record A without TensorFlow and reuses one result for identical GRU/identity inputs.
-- **Station coordinates.** The rainfall fetchers in `src/forcing/` read the station coordinates from the parish's operational downloader, which is not included. The same coordinates are in `config/station_coordinates.csv`.
+Epoch selection uses 2023-2024 training origins and 2025 validation origins. Final weights are fitted from a fresh initialization using all pre-2026 origins, then held fixed throughout the January-August 2026 evaluation. Seeds are 101, 202 and 303. The evaluation contains 5,832 hourly forecast origins, including 927 event-only origins defined by parish pump operation at issue time.
 
-## Not included
+The observed-rainfall hindcast has postprocessing off. Simulated operational forecasts use archived issue-time HRRR rainfall with continuity blending, stale-data handling and rainfall-dependent rise caps. Scores are calculated per gauge and seed, averaged over seeds, and summarized by the median across gauges. See [training protocol](docs/training_protocol.md) and the other protocol documents in `docs/`.
 
-- **Operational credentials and server addresses.** They are replaced by `<SERVER>`, `<HPC_HOST>` and `<HPC_ALLOCATION>`, as listed in `SCRUB_REPORT.csv`.
+## Running the original workflow
 
-- **The Ascension Parish Government HEC-RAS model files.** These are internal Parish data on the Parish SharePoint. They are read by:
-  - `src/graphs/hecras_graph.py` (simulated water surface);
-  - `src/graphs/dem_graph.py` (terrain raster; `dem_within_basin_graph.py` derives from that graph);
-  - `src/figures/fig01_study_area.py` (terrain raster);
-  - `src/figures/figA1_terrain_and_mesh.py` (terrain raster and mesh geometry).
+Run scripts from the repository root. Most original training, inference and plotting scripts expect the study's data layout under `project/`, including `project/Experiments/` and HPC storage under `project/hpc/`. Those data directories are not included here. See [installation](docs/installation.md) before using the original environment snapshots.
 
-  The graphs they produce are in Record A.
-- **Raw training telemetry.** Record A contains paired forecasts and observations for scoring, not the complete feature-engineered training matrix. It supports reproducing scores and paired uncertainty calculations. Retraining and rainfall-forcing reconstruction require the original telemetry and issue-time rainfall inputs described by the scripts.
+The companion evaluation data support scoring and uncertainty calculations. They do not contain the complete raw training matrix. Retraining requires the original telemetry and meteorological inputs. The parish's private HEC-RAS model, terrain and mesh files are not distributed; their derived graphs are supplied separately with the evaluation data. Some rainfall downloaders also refer to the parish operational downloader, which is not included; station coordinates are provided in `config/station_coordinates.csv`.
 
-## Environment
+For another watershed, supply its observations, forcing channels and graph, then train and evaluate models for that network. The supplied checkpoints depend on Ascension's gauge order, graph and normalization statistics. This repository preserves the research workflow; it does not provide a general-purpose forecasting service or a complete operational deployment.
 
-- **Evaluation:** Linux with Python 3.13, TensorFlow 2.20, NumPy 2.2 and pandas 2.3 (`environment/`).
-- **Training:** on the LSU HPC cluster, one GPU, in the cluster's TensorFlow 2.16.1 container.
-- **Weights:** written by Keras `save_weights` (`src/stgnn/train.py`).
+## Citation and licence
+
+Use [CITATION.cff](CITATION.cff) for the software citation, and cite the associated paper when available. Code and trained weights are covered by [Apache-2.0](LICENSE), with attribution in [NOTICE](NOTICE).
