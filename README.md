@@ -20,7 +20,7 @@ python src/evaluation/reproduce_paper_resampling.py \
 
 Set `--data` to the extracted evaluation-data directory containing `bootstrap_inputs/`. The script repeats the paired comparison 10,000 times, sampling gauges and 72-hour blocks of forecast origins with replacement. Each repeat uses the same sampled observations for both configurations. The middle 95% of the resulting RMSE differences gives the reported interval. See [reproducing results](docs/reproducing_results.md) for the inputs and output fields.
 
-Archive identifiers: [evaluation data and derived graphs](https://doi.org/10.5281/zenodo.23046776) and [software and trained weights](https://doi.org/10.5281/zenodo.23063618). The software and weights use Apache-2.0; the evaluation data use CC BY 4.0. Archive availability is managed separately from this repository.
+Archive identifiers: [evaluation data and derived graphs](https://doi.org/10.5281/zenodo.23086106) and [software and trained weights](https://doi.org/10.5281/zenodo.23087884). The software and weights use Apache-2.0; the evaluation data use CC BY 4.0. Archive availability is managed separately from this repository.
 
 ## Repository contents
 
