@@ -1,0 +1,6 @@
+Operational ST-GNN stage forecasting, Ascension Parish: workflow, code and trained weights
+Copyright 2026 Louisiana State University
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+The trained weights in weights/ are derived from Ascension Parish Government gauge records released with the
+Parish's approval of 28 September 2026 and are distributed under the same licence.
