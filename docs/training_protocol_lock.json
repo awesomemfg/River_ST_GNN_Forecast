@@ -1,0 +1,48 @@
+{
+  "experiment": "SYSTEM_B_471_CHRONOLOGICAL_20260913",
+  "protocol_status": "locked before full training",
+  "research_only": true,
+  "model": "68-node nine-channel ST-GNN",
+  "seeds": [101, 202, 303],
+  "development": {
+    "training_origins_utc": ["2023-01-04 00:00:00", "2024-12-30 23:00:00"],
+    "training_origin_count": 17448,
+    "validation_origins_utc": ["2025-01-04 00:00:00", "2025-12-30 23:00:00"],
+    "validation_origin_count": 8664,
+    "statistics_cutoff_utc": "2024-12-31 23:45:00",
+    "graph_cutoff_utc": "2024-12-31 23:45:00",
+    "graph_edges": 332,
+    "maximum_epochs": 40,
+    "early_stopping_patience": 8
+  },
+  "final_fit": {
+    "training_origins_utc": ["2023-01-04 00:00:00", "2025-12-30 23:00:00"],
+    "training_origin_count": 26208,
+    "statistics_cutoff_utc": "2025-12-31 23:45:00",
+    "graph_cutoff_utc": "2025-12-31 23:45:00",
+    "graph_edges": 471,
+    "epoch_rule": "same-seed best epoch selected only in chronological development"
+  },
+  "test": {
+    "origin_start_utc": "2026-01-01 00:00:00",
+    "origin_end_utc": "2026-06-30 23:00:00",
+    "origin_count": 4344,
+    "weights_frozen": true,
+    "observed_rain_arm": "oracle forcing upper bound",
+    "forecast_rain_arm": "archived issue-time HRRR L2",
+    "postprocessing": "off",
+    "primary_scoring_gauges": 51
+  },
+  "hard_invariants": {
+    "input_steps": 288,
+    "input_hours": 72,
+    "rain6_steps": 6,
+    "rain6_hours": 1.5,
+    "rain24_steps": 24,
+    "rain24_hours": 6,
+    "decoder_steps": 96,
+    "decoder_hours": 24,
+    "flatline_detection": "causal trailing 96-step standard deviation",
+    "quantile_scored": 0.8
+  }
+}
